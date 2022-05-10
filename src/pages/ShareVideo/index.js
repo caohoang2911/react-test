@@ -42,7 +42,7 @@ function ShareVideo() {
                 try {
                     const video = await localForage.getItem(STORE_KEY_VIDEO_SHARED);
                     if (video) {
-                        video.push({
+                        video.unshift({
                             id: idVideo,
                             email: userInfo?.email,
                             link: inputRefVideo.current.value,
