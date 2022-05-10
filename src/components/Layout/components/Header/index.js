@@ -1,13 +1,18 @@
 // Vendor
-
-import classNames from 'classnames/bind';
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+//style
+import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
+import styles from './Header.module.scss';
+
+//component
 import Button from '~/components/Button';
 import Input from '~/components/Input';
-import styles from './Header.module.scss';
+
+//context
 import { AuthContext } from '~/contexts/AuthContext';
-import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -27,7 +32,10 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Link to="/">
-                    <h1>Funny video</h1>
+                    <h1 className={cx('logo')}>
+                        <img alt="logo" width={40} height={40} src="https://img.icons8.com/ios/344/crazy.png" />
+                        Funny video
+                    </h1>
                 </Link>
                 <div className={cx('actions')}>
                     {isLogin ? (
@@ -46,6 +54,7 @@ function Header() {
                                 onChange={(e) => {
                                     setEmail(e.target.value);
                                 }}
+                                type="email"
                                 placeholder="Email"
                                 onKeyDown={handleEnter}
                             />

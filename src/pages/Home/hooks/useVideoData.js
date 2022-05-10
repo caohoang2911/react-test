@@ -12,7 +12,6 @@ function useVideoData() {
         localForage
             .getItem('videoShared')
             .then((videos) => {
-                console.log(videos, 'videos');
                 if (videos && videos.length) {
                     dispatch({ type: 'setVideoList', data: videos });
                 }
@@ -21,8 +20,20 @@ function useVideoData() {
                 console.log(err);
             });
     }, []);
+
+    const onFavorite = (id) => {
+        dispatch({ type: 'favorite', id });
+    };
+
+    const onUnFavorite = (id) => {
+        dispatch({ type: 'unFavorite', id });
+    };
+
     return {
         videoList,
+
+        onFavorite,
+        onUnFavorite,
     };
 }
 

@@ -1,7 +1,12 @@
+import { VideoManageContextProvider } from '~/contexts/VideoManageContext';
 import Videos from './components/Videos';
 
 function Home() {
-    return <Videos />;
+    return (
+        <VideoManageContextProvider>
+            <Videos />;
+        </VideoManageContextProvider>
+    );
 }
 
 export default Home;

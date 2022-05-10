@@ -1,19 +1,16 @@
-import { useRef, useEffect, useContext, useState } from 'react';
-
-// component
-import Button from '~/components/Button';
-import Input from '~/components/Input';
-import Fieldset from '~/components/Fieldset';
-
-//style
-
-import styles from './ShareVideo.module.scss';
 import classNames from 'classnames/bind';
-
 // library
 import localForage from 'localforage';
+import { useContext, useEffect, useRef } from 'react';
+// component
+import Button from '~/components/Button';
+import Fieldset from '~/components/Fieldset';
+import Input from '~/components/Input';
+import { STORE_KEY_VIDEO_SHARED } from '~/constant/variableConstant';
 import { AuthContext } from '~/contexts/AuthContext';
 import toastUtils from '~/ultils/Toast';
+//style
+import styles from './ShareVideo.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -40,21 +37,25 @@ function ShareVideo() {
                 const { title, description } = responseAsJson?.items[0].snippet;
                 toastUtils.toastSuccess('Share video success');
                 try {
-                    const video = await localForage.getItem('videoShared');
+                    const video = await localForage.getItem(STORE_KEY_VIDEO_SHARED);
                     if (video) {
                         video.push({
+                            id: idVideo,
                             email: userInfo?.email,
                             link: inputRefVideo.current.value,
                             title,
+                            vote: null,
                             description: description.replace(/\n/g, '<br />'),
                         });
-                        localForage.setItem('videoShared', [...video]);
+                        localForage.setItem(STORE_KEY_VIDEO_SHARED, [...video]);
                     } else {
-                        localForage.setItem('videoShared', [
+                        localForage.setItem(STORE_KEY_VIDEO_SHARED, [
                             {
+                                id: idVideo,
                                 email: userInfo?.email,
                                 link: inputRefVideo.current.value,
                                 title,
+                                vote: null,
                                 description: description.replace(/\n/g, '<br />'),
                             },
                         ]);
@@ -69,6 +70,7 @@ function ShareVideo() {
             })
             .finally(() => {
                 inputRefVideo.current.value = null;
+                inputRefVideo.current.focus();
             });
     };
 

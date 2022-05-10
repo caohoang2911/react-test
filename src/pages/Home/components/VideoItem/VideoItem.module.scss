@@ -2,14 +2,19 @@
     padding: 10px 20px;
 }
 
-.no-video {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 2rem;
-    border: 1px solid #dfdfdf;
-    border-radius: 8px;
-    padding: 10px;
+.action-icon-group {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 10px 0px;
+    svg {
+        cursor: pointer;
+        &:active {
+            fill: rgb(240, 164, 164);
+        }
+    }
 }
+
 .line {
     margin: 10px 0px;
 }

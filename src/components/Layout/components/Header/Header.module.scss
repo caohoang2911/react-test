@@ -11,6 +11,14 @@
     justify-content: center;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    img {
+        margin-right: 10px;
+    }
+}
+
 .inner {
     height: 100%;
     width: var(--default-layout-width);
