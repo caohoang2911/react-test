@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 // library
 import localForage from 'localforage';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 // component
 import Button from '~/components/Button';
 import Fieldset from '~/components/Fieldset';
@@ -15,8 +15,9 @@ import styles from './ShareVideo.module.scss';
 const cx = classNames.bind(styles);
 
 function ShareVideo() {
-    const { userInfo } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
 
+    const { userInfo } = useContext(AuthContext);
     const inputRefVideo = useRef(null);
 
     useEffect(() => {
@@ -24,6 +25,7 @@ function ShareVideo() {
     }, []);
 
     const fetchInfoVideo = (idVideo) => {
+        setLoading(true);
         return fetch(
             `https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${idVideo}&key=AIzaSyAb-tgWhRAPsVofFsO0RXU21FmvnBYFj_4`,
         )
@@ -71,6 +73,7 @@ function ShareVideo() {
             .finally(() => {
                 inputRefVideo.current.value = null;
                 inputRefVideo.current.focus();
+                setLoading(false);
             });
     };
 
@@ -90,7 +93,7 @@ function ShareVideo() {
                 <form onSubmit={handleSubmitShareVideo} className={cx('form-wrapper')}>
                     <Input ref={inputRefVideo} placeholder="Youtube url" />
                     <Button type="submit" primary>
-                        Share
+                        {!loading ? 'Share' : 'loading...'}
                     </Button>
                 </form>
             </Fieldset>
