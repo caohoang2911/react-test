@@ -1,5 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
+
 import useVideoData from './../../hooks/useVideoData';
+import styles from './Videos.module.scss';
+import classNames from 'classnames/bind';
+import VideoItem from '../VideoItem';
+
+const cx = classNames.bind(styles);
 
 export default function Videos() {
     const { videoList } = useVideoData();
@@ -8,16 +14,15 @@ export default function Videos() {
         return videoList.map((video, index) => {
             const videoID = video?.link.split('?v=')[1];
             return (
-                <div key={index} style={{ marginTop: '30px' }}>
-                    <iframe width="420" height="315" src={`https://www.youtube.com/embed/${videoID}`}></iframe>
-                    <h4>{video?.email}</h4>
+                <div className={cx('wp-content')} key={index} style={{ marginTop: '30px' }}>
+                    <VideoItem videoID={videoID} {...video} />
                 </div>
             );
         });
     }, [videoList]);
 
     if (!videoList.length) {
-        return <div>No video</div>;
+        return <div className={cx('no-video')}>No video</div>;
     }
-    return <div>{renderVideoList}</div>;
+    return <div className={cx('wapper')}>{renderVideoList}</div>;
 }
