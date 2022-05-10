@@ -17,11 +17,12 @@ const cx = classNames.bind(styles);
 function ShareVideo() {
     const [loading, setLoading] = useState(false);
 
-    const { userInfo } = useContext(AuthContext);
+    const { userInfo, isLogin } = useContext(AuthContext);
+
     const inputRefVideo = useRef(null);
 
     useEffect(() => {
-        inputRefVideo.current.focus();
+        if (isLogin) inputRefVideo.current.focus();
     }, []);
 
     const fetchInfoVideo = (idVideo) => {
@@ -87,6 +88,9 @@ function ShareVideo() {
         }
     };
 
+    if (!isLogin) {
+        return <h3 className={cx('login-required')}>Login to share video</h3>;
+    }
     return (
         <div className={cx('wrapper')}>
             <Fieldset>
