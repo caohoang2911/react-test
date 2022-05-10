@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 //style
 import classNames from 'classnames/bind';
-import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 
 //component
