@@ -8,6 +8,9 @@
     width: var(--default-layout-width);
     padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
+    @media all and (max-width: 1024px) {
+        width: 100%;
+    }
 }
 
 .content {

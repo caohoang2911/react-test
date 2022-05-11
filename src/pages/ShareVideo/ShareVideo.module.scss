@@ -19,3 +19,9 @@
     padding: 15px;
     border-radius: 8px;
 }
+fieldset {
+    @media all and (max-width: 300px) {
+        width: calc(100% - 30px);
+        margin: 15px;
+    }
+}
