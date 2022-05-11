@@ -40,7 +40,7 @@ const VideoItem = ({ id, title, description, email, vote }) => {
             </div>
             <div className={cx('wp-content-text')}>
                 <h1>
-                    <a href={`https://www.youtube.com/watch?v=${id}`} blank="_target">
+                    <a href={`https://www.youtube.com/watch?v=${id}`} target="_blank">
                         {title}
                     </a>
                 </h1>
