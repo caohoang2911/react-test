@@ -4,7 +4,7 @@ import Videos from './components/Videos';
 function Home() {
     return (
         <VideoManageContextProvider>
-            <Videos />;
+            <Videos />
         </VideoManageContextProvider>
     );
 }
