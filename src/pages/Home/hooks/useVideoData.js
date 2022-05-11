@@ -18,7 +18,7 @@ function useVideoData() {
                     dispatch({ type: 'setVideoList', data: videos });
                 }
             })
-            .then((err) => {
+            .catch((err) => {
                 toastUtils.toastWarning('Error on get video');
             });
     }, []);
