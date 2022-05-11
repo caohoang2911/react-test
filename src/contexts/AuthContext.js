@@ -12,25 +12,13 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         localForage.getItem('isLogin').then((isLogin) => {
-            if (isLogin) {
-                setIsLogin(true);
-            } else {
-                setIsLogin(false);
-            }
+            setIsLogin(isLogin);
         });
         localForage.getItem('userInfo').then((userInfo) => {
-            if (userInfo) {
-                setUserInfo(userInfo);
-            } else {
-                setUserInfo({});
-            }
+            setUserInfo(userInfo ?? {});
         });
         localForage.getItem('userRegisted').then((users) => {
-            if (users) {
-                userRegisted.current = users;
-            } else {
-                userRegisted.current = [];
-            }
+            userRegisted.current = users ?? [];
         });
     }, []);
     const validateForm = ({ email, password }) => {

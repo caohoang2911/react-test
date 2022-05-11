@@ -1,6 +1,8 @@
-import localForage from 'localforage';
 import { useEffect, useReducer } from 'react';
+
+import localForage from 'localforage';
 import videosReducer from './videoReducer';
+import toastUtils from '~/ultils/Toast';
 
 function useVideoData() {
     const [{ videoList }, dispatch] = useReducer(videosReducer, {
@@ -17,7 +19,7 @@ function useVideoData() {
                 }
             })
             .then((err) => {
-                console.log(err);
+                toastUtils.toastWarning('Error on get video');
             });
     }, []);
 

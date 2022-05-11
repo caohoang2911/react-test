@@ -40,10 +40,10 @@ function Header() {
                     {isLogin ? (
                         <>
                             <span className={cx('wellcome')}>Wellcom {userInfo.email}</span>
-                            <Button text outline to="/share-video">
+                            <Button data-testid="btn-share" text outline to="/share-video">
                                 Share a movie
                             </Button>
-                            <Button primary onClick={onLogout}>
+                            <Button data-testid="btn-logout" primary onClick={onLogout}>
                                 Log out
                             </Button>
                         </>
@@ -66,7 +66,7 @@ function Header() {
                                 placeholder="Password"
                                 onKeyDown={handleEnter}
                             />
-                            <div className={cx('action-auth')}>
+                            <div className={cx('action-auth')} data-testid="button-login">
                                 <a
                                     href="#"
                                     onClick={(e) => {

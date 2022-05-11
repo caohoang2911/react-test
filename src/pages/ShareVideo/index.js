@@ -94,9 +94,9 @@ function ShareVideo() {
     return (
         <div className={cx('wrapper')}>
             <Fieldset>
-                <form onSubmit={handleSubmitShareVideo} className={cx('form-wrapper')}>
+                <form data-testid="test-form" onSubmit={handleSubmitShareVideo} className={cx('form-wrapper')}>
                     <Input ref={inputRefVideo} placeholder="Youtube url" />
-                    <Button type="submit" primary>
+                    <Button data-testid="btn-action-share" type="submit" primary>
                         {!loading ? 'Share' : 'loading...'}
                     </Button>
                 </form>
